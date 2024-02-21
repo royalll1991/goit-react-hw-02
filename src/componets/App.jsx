@@ -1,27 +1,28 @@
-
+import { useState } from 'react'
 import './App.css'
-import userData from '../userData.json'
-import Profile from './Profile/Profile'
-import friends from "../friends.json"
-import FriendList from './FriendList/FriendList'
-import transactions from "../transactions.json"
-import TransactionHistory from './TransactionHistory/TransactionHistory'
+import Description from './Description/Description'
+import Feedback from './Feedback/Feedback'
+import Options from './Options/Options'
+
 
 
 function App() {
-
+const [feedback, setFeedback] = useState({
+	good: 0,
+	neutral: 0,
+	bad: 0,
+}
+);
 
   return (
     <>
-      <Profile 
-        name={userData.username}
-        tag={userData.tag}
-        location={userData.location}
-        avatar={userData.avatar}
-        stats={userData.stats}
+      <Description/>
+      <Options
+      feedback={feedback}
+      setFeedback = {setFeedback}/>
+      <Feedback 
+      feedback = {feedback}
       />
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />
     </>
   )
 }
