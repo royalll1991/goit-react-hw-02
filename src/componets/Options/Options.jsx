@@ -1,15 +1,25 @@
-const Options = ({feedback, setFeedback}) => {
-    const hendleFeedback = (option) =>{
+const Options = ({feedback, setFeedback, totalFeedback}) => {
+    
+    const  updateFeedback = (feedbackType) => {
         setFeedback({
             ...feedback,
-            [option]: feedback[option] + 1
+            [feedbackType]: feedback[feedbackType] + 1
         });
     }
+
+  
+
     return(
 <>
-<button onClick={() => hendleFeedback('good')}>Good</button>
-<button onClick={() => hendleFeedback('neutral')}>Neutral</button>
-<button onClick={() => hendleFeedback('bad')}>Bad</button>
+<button onClick={() => updateFeedback('good')}>Good</button>
+<button onClick={() => updateFeedback('neutral')}>Neutral</button>
+<button onClick={() => updateFeedback('bad')}>Bad</button>
+
+{totalFeedback > 0 && <button onClick={ () => setFeedback({
+	good: 0,
+	neutral: 0,
+	bad: 0,
+})}>Reset</button>}
 </>
     )
 };
